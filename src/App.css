@@ -1,14 +1,39 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(circle at top, #1a1446, #0d0630);
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('/space-bg.jpg'); /* relative to public/ */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed; /* keeps it fixed while scrolling */
   color: white;
 }
+.table-container {
+  background: rgba(0, 0, 0, 0.4);  /* dark translucent background */
+  backdrop-filter: blur(12px);     /* creates the glass blur */
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
 
 .app {
   display: flex;
   height: 100vh;
 }
+.card, .summary, .table-container {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 1rem;
+  color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
 
 .sidebar {
   background-color: #0a0a23;

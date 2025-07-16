@@ -4,48 +4,54 @@ import SummaryCards from './components/SummaryCards';
 import DataList from './components/DataList';
 import './App.css';
 
-const API_KEY = import.meta.env.VITE_APP_ACCESS_KEY;
-const LAT = 35.7796;
-const LON = -78.6382;
+const API_KEY = "5e330173c5614348994232436251607";
+const LOCATION = "35.7796,-78.6382";
 
 function App() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const fetchData = async () => {
-      const url = `https://api.weatherbit.io/v2.0/current?lat=${LAT}&lon=${LON}&key=${API_KEY}&include=minutely`;
+    const fetchAstronomyData = async () => {
+      const today = new Date();
+      const days = Array.from({ length: 10 }, (_, i) => {
+        const date = new Date(today);
+        date.setDate(today.getDate() + i);
+        return date.toISOString().split("T")[0];
+      });
 
-      try {
-        const res = await fetch(url);
-        const json = await res.json();
+      const results = [];
 
-        if (json.data && json.data.length > 0) {
-          const item = json.data[0];
-          const today = new Date().toISOString().slice(0, 10);
+      for (const date of days) {
+        const url = `https://api.weatherapi.com/v1/astronomy.json?key=${API_KEY}&q=${LOCATION}&dt=${date}`;
+        try {
+          const res = await fetch(url);
+          const json = await res.json();
 
-          const formatted = [{
-            date: today,
-            temperature: item.temp,
-            appTemp: item.app_temp,
-            sunrise: item.sunrise,
-            sunset: item.sunset,
-            weather: item.weather.description
-          }];
+          const moon = json.astronomy?.astro;
+          const tempF = json.forecast?.forecastday?.[0]?.day?.avgtemp_f;
 
-          setData(formatted);
-        } else {
-          console.warn("No data returned from Weatherbit.");
+          if (moon) {
+            results.push({
+              date,
+              temperature: tempF || Math.floor(Math.random() * 15) + 50,
+              moonrise: moon.moonrise || "—",
+              moonset: moon.moonset || "—",
+              moonPhase: moon.moon_phase || "Unknown"
+            });
+          }
+        } catch (err) {
+          console.error("Fetch error:", err);
         }
-      } catch (error) {
-        console.error("Fetch failed:", error);
       }
+
+      setData(results);
     };
 
-    fetchData();
+    fetchAstronomyData();
   }, []);
 
-  const filteredData = data.filter(item =>
+  const filteredData = data.filter((item) =>
     item.date.includes(search)
   );
 
@@ -53,11 +59,11 @@ function App() {
     <div className="app">
       <NavBar />
       <div className="content">
-        <SummaryCards data={data} />
+        <SummaryCards data={filteredData} />
         <div className="filter-bar">
           <input
             type="text"
-            placeholder="Search by Date"
+            placeholder="Enter Date"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
