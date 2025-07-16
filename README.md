@@ -1,12 +1,11 @@
-# React + Vite
+# Required Features
+1. [x] Clicking on an item in the list view displays more details about it
+        Clicking on an item in the dashboard list navigates to a detail view for that item
+        Detail view includes extra information about the item not included in the dashboard view
+        The same sidebar is displayed in detail view as in dashboard view
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2. [x] Each detail view of an item has a direct, unique URL link to that item’s detail view page
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. [x] The app includes at least two unique charts developed using the fetched data that tell an interesting story
+        At least two charts should be incorporated into the dashboard view of the site
+        Each chart should describe a different aspect of the dataset
