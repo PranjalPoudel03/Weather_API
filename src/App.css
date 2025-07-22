@@ -90,18 +90,42 @@ body {
   opacity: 0.8;
 }
 
+
 .filter-bar {
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.filter-bar input {
-  padding: 0.8rem;
+.filter-bar input[type="text"] {
+  padding: 0.6rem 0.8rem;
   border-radius: 8px;
   border: none;
-  width: 100%;
-  max-width: 300px;
   font-size: 1rem;
 }
+
+.filter-bar input[type="range"] {
+  width: 140px;
+  margin-left: 0.5rem;
+}
+
+.filter-bar label {
+  font-weight: bold;
+}
+
+.filter-bar button {
+  padding: 0.5rem 1rem;
+  background-color: #556cd6;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+
 
 table {
   width: 100%;
@@ -123,4 +147,23 @@ th, td {
 
 tbody tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.03);
+}
+
+.dashboard-main {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.left-panel {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }

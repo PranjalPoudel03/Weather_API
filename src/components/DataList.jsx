@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 const getMoonEmoji = (phase) => {
   const p = phase.toLowerCase();
   if (p.includes("new")) return "🌑";
@@ -12,6 +14,8 @@ const getMoonEmoji = (phase) => {
 };
 
 export default function DataList({ data }) {
+  const navigate = useNavigate();
+
   return (
     <table className="table-container">
       <thead>
@@ -25,7 +29,11 @@ export default function DataList({ data }) {
       </thead>
       <tbody>
         {data.map((item, idx) => (
-          <tr key={idx}>
+          <tr
+            key={idx}
+            onClick={() => navigate(`/details/${item.date}`)}
+            style={{ cursor: 'pointer' }}
+          >
             <td>{item.date}</td>
             <td>{item.temperature}°F</td>
             <td>{item.moonrise}</td>

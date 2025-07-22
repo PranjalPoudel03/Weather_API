@@ -9,3 +9,4 @@
 3. [x] The app includes at least two unique charts developed using the fetched data that tell an interesting story
         At least two charts should be incorporated into the dashboard view of the site
         Each chart should describe a different aspect of the dataset
+
